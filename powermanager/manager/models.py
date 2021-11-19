@@ -60,35 +60,51 @@ sector_types = (
     ('Technology','Technology'),
 )
 
+paramilitary_types = (
+    ('Government','Government'),
+    ('Crime','Crime'),
+    ('Insurgent','Insurgent'),
+)
+
 
 
 # Create your models here.
 
 class Country(models.Model):
-    name = models.CharField(max_length=100,choices=country_choices)
+    name = models.CharField(max_length=100,choices=country_choices,unique=True)
 
 class Region(models.Model):
-    country = models.ForeignKey('Country', max_length=50,related_name='regions')
+    country = models.ForeignKey('Country', on_delete=models.CASCADE,related_name='country_regions')
     name = models.CharField(max_length=100,choices=country_choices)
 
-class Sector(models.Model):
-    type = models.CharField(max_length=50,choices=sector_types)
-    region = models.ForeignKey('Region', max_length=50,related_name='region_sectors')
+class Party(models.Model):
+    name = models.CharField(max_length=255)
+    country = models.ForeignKey('Country', on_delete=models.CASCADE,related_name='country_parties')
 
 class Corporation(models.Model):
     name = models.CharField(max_length=255)
+    specialization = models.CharField(max_length=50,choices=sector_types)
 
 class Union(models.Model):
     name = models.CharField(max_length=255)
 
+class Sector(models.Model):
+    type = models.CharField(max_length=50,choices=sector_types)
+    region = models.ForeignKey('Region', on_delete=models.CASCADE,related_name='region_sectors')
+    corporations = models.ForeignKey('Corporation', on_delete=models.CASCADE,related_name='corp_sectors')
+    unions = models.ForeignKey('Union', on_delete=models.CASCADE,related_name='union_sectors')
+
 class Paramilitary(models.Model):
     name = models.CharField(max_length=255)
+    country = models.ForeignKey('Country', on_delete=models.CASCADE,related_name='paramilitaries')
+    type = models.CharField(max_length=20,choices=paramilitary_types)
 
 class Account(models.Model):
     username = models.CharField(max_length=255)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='player_accounts')
     character_name = models.CharField(max_length=255)
     region = models.ForeignKey('Region', on_delete=models.CASCADE,related_name='region_players')
-    corporation = models.ForeignKey('Corporation', on_delete=models.CASCADE,related_name='ceo')
-    paramilitary = models.ForeignKey('Paramilitary', on_delete=models.CASCADE,related_name='military_leader')
-    union = models.ForeignKey('Union', on_delete=models.CASCADE,related_name='union_boss')
+    corporation = models.ForeignKey('Corporation', on_delete=models.CASCADE,related_name='ceo',null=True)
+    paramilitary = models.ForeignKey('Paramilitary', on_delete=models.CASCADE,related_name='military_leader',null=True)
+    union = models.ForeignKey('Union', on_delete=models.CASCADE,related_name='union_boss',null=True)
+    party = models.ForeignKey('Party', on_delete=models.CASCADE, related_name='members',null=True)
