@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="bg-dark p-5 rounded-lg m-3 text-light">
+  <h1 class="display-4">Register {{ name }}</h1>
+  <form method="POST" class='post-form'>
+    {% csrf_token %}
+    {% for field in form %}
+    <hr>
+    <div class="row">
+      <div class="col-2 m-3">
+        <h6 m-5>{{ field.label_tag }}</h6>
+      </div>
+      <div class="col m-3">
+        {{ field.errors }}
+        {{ field }}
+        {{ field.help_text }}
+      </div>
+    </div>
+    {% endfor %}
+    <hr>
+    <div class="m-3">
+      <button class="btn btn-info" type='submit'>Register</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

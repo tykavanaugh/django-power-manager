@@ -1,7 +1,10 @@
-{% extends "base.html" %}
+{% extends "loggedout_base.html" %}
 
 {% block body %}
 <div class="bg-dark p-5 rounded-lg m-3 text-light">
-  <h1 class="display-4">Placeholder body</h1>
+  <h1 class="display-4">Welcome</h1>
+  <h6>Please Log In or Register to Proceed</h6>
+  <a href="{% url 'manager:login' %}"><p>Login</p></a>
+  <a href="{% url 'manager:signup' %}"><p>Register</p></a>
 </div>
 {% endblock %}

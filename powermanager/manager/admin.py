@@ -27,6 +27,9 @@ class ParamilitaryAdmin(admin.ModelAdmin):
 class AccountAdmin(admin.ModelAdmin):
     pass
 
+class AssignmentAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Country,CountryAdmin)
 admin.site.register(Region,RegionAdmin)
 admin.site.register(Party,PartyAdmin)
@@ -35,3 +38,4 @@ admin.site.register(Union,UnionAdmin)
 admin.site.register(Sector,SectorAdmin)
 admin.site.register(Paramilitary,ParamilitaryAdmin)
 admin.site.register(Account,AccountAdmin)
+admin.site.register(Assignment,AssignmentAdmin)

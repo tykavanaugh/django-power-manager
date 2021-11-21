@@ -1,0 +1,25 @@
+{% extends "loggedout_base.html" %}
+
+{% block body %}
+
+<div class="bg-dark p-5 rounded-lg m-3 text-light">
+  <h1 class="display-4">Log in</h1>
+  <form method="POST" class='post-form'>
+    {% csrf_token %}
+    {% for field in form %}
+    <h6>{{ field.label_tag }}</h6>
+    <div class="div">
+    {{ field.errors }}
+    {{ field }}
+    {{ field.help_text }}
+    </div>
+    {% endfor %}
+    <div class="m-3">
+    <button class="btn btn-primary" type='submit'>Log in</button>
+    </div>
+  </form>
+  <p>If you don't have an account <a href="{% url 'manager:signup' %}">sign up</a> and then ping leadership to be verfied</p>
+</div>
+
+
+{% endblock %}

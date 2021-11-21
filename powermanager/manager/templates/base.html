@@ -13,28 +13,34 @@
 <body class="bg-light bg-gradient">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Goon Database {{ page_title }}</a>
+      <a class="navbar-brand" href="#">Goon Database: {{ page_title }}</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">View Profile</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'manager:home' %}"><button class="btn btn-outline-info">Home</button></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'manager:profile' %}">View Profile</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Update Info
+              Register new...
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Account</a></li>
+              <li><a class="dropdown-item" href="{% url 'manager:create_profile' %}">Account</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Union</a></li>
-              <li><a class="dropdown-item" href="#">Paramilitary</a></li>
+              <li><a class="dropdown-item" href="{% url 'manager:create_union' %}">Union</a></li>
+              <li><a class="dropdown-item" href="{% url 'manager:create_corporation' %}">Corporation</a></li>
+              <li><a class="dropdown-item" href="{% url 'manager:create_paramilitary' %}">Paramilitary</a></li>
+              <li><a class="dropdown-item" href="{% url 'manager:create_party' %}">Party</a></li>
+              <li><a class="dropdown-item" href="{% url 'manager:create_assignment' %}">Assignment</a></li>
             </ul>
           </li>
         </ul>
-        <a href="">
+        <a href="{% url 'manager:logout' %}">
           <button class="btn btn-outline-danger" type="submit">Logout</button>
         </a>
       </div>
