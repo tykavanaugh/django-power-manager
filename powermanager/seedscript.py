@@ -90,7 +90,24 @@ multistate_nations = (
     ('Japan','Japan'),
     ('India','India'),
     ('France','French Republic'),
-) 
+)
+
+sector_types = (
+    ('Agriculture','Agriculture'),
+    ('Automobiles','Automobiles'),
+    ('Defense','Defense'),
+    ('Financial','Financial'),
+    ('Healthcare','Healthcare'),
+    ('Manufacturing','Manufacturing'),
+    ('Media','Media'),
+    ('Mining','Mining'),
+    ('Oil and gas','Oil and gas'),
+    ('Retail','Retail'),
+    ('Technology','Technology'),
+)
+
+
+sector_count = 1
 
 def gen_country():
     i = 1
@@ -100,19 +117,33 @@ def gen_country():
         i += 1
 
 def gen_us_states():
+    global sector_count
     i = 1
     for state in state_list:
         s = f"""{{"model": "manager.region", "pk": {i}, "fields": {{"country": 1, "name": "{state}"}}}}"""
         print(s+',')
+        for sector_type in sector_types:
+            sector_s = f"""{{"model": "manager.sector", "pk": {sector_count}, "fields": {{"type": "{sector_type[0]}", "region": {i}, "corporations": null, "unions": null}}}},"""
+            print(sector_s)
+            sector_count += 1
         i += 1
 
+
 def gen_oneprov_states():
+    global sector_count
     i = 51
     for nation in one_province_nations:
         country_code = Country.objects.get(name=nation[0])
         country_code = country_code.pk
         s = f"""{{"model": "manager.region", "pk": {i}, "fields": {{"country": {country_code}, "name": "{nation[0]}"}}}}"""
         print(s+',')
+        for sector_type in sector_types:
+            sector_s = f"""{{"model": "manager.sector", "pk": {sector_count}, "fields": {{"type": "{sector_type[0]}", "region": {i}, "corporations": null, "unions": null}}}},"""
+            print(sector_s)
+            sector_count += 1
         i += 1
-
+print('[')
+gen_country()
+gen_us_states()
 gen_oneprov_states()
+print(']')
