@@ -39,15 +39,19 @@ def home(request):
 
 @login_required
 def profile(request):
+    print('testtest')
     try:
-        account = Account.objects.get(owner=request.user)
+        print(Account.objects.all())
+        print(request.user)
+        accounts = Account.objects.all().filter(owner=request.user)
+        print(accounts)
     except:
         return redirect("manager:create_profile")
     data = {
             "page_title":"Profile",
-            "item": account,
+            "item": accounts,
         }
-    return render(request,'manager/item.html',data)
+    return render(request,'manager/item_detail.html',data)
 
 @login_required
 def edit_profile(request):

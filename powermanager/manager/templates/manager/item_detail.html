@@ -2,6 +2,10 @@
 
 {% block body %}
 <div class="bg-dark p-5 rounded-lg m-3 text-light">
-  {{ item }}
+  {% for part in item %}
+  <div class="row">
+    {{ part }}
+  </div>
+  {% endfor %}
 </div>
 {% endblock %}
