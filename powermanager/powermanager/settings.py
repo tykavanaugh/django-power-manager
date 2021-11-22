@@ -130,3 +130,6 @@ LOGIN_URL = "manager:login"
 LOGIN_REDIRECT_URL = "manager:home" 
 
 LOGOUT_REDIRECT_URL = "manager:login"
+
+import django_heroku
+django_heroku.settings(locals())
