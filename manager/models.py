@@ -145,10 +145,10 @@ class Account(models.Model):
     class Meta:
         verbose_name_plural = "Accounts"
     def __str__(self):
-        return f"""In-game Username: {self.username}
-        Region: {self.region}
-        Corporation: {self.corporation}
-        Paramilitary: {self.paramilitary}
-        Union: {self.union}
+        return f"""In-game Username: {self.username}\n
+        Region: {self.region}\n
+        Corporation: {self.corporation}\n
+        Paramilitary: {self.paramilitary}\n
+        Union: {self.union}\n
         Party: {self.party}
         """
