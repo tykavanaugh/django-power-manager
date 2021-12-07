@@ -20,7 +20,7 @@ class AccountForm(forms.ModelForm):
 class UnionForm(forms.ModelForm):
     class Meta:
         model = Union
-        fields = ['name','country']
+        fields = ['name']
 
 class ParamilitaryForm(forms.ModelForm):
     class Meta:
