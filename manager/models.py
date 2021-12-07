@@ -147,8 +147,8 @@ class Account(models.Model):
     def __str__(self):
         return f"""In-game Username: {self.username}
         Region: {self.region}
-        Corporation: {self.region}
-        Paramilitary: {self.region}
-        Union: {self.region}
-        Party: {self.region}
+        Corporation: {self.corporation}
+        Paramilitary: {self.paramilitary}
+        Union: {self.union}
+        Party: {self.party}
         """

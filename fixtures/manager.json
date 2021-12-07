@@ -626,7 +626,7 @@
 {"model": "manager.sector", "pk": 537, "fields": {"type": "Oil and gas", "region": 49, "corporations": null, "unions": null}},
 {"model": "manager.sector", "pk": 538, "fields": {"type": "Retail", "region": 49, "corporations": null, "unions": null}},
 {"model": "manager.sector", "pk": 539, "fields": {"type": "Technology", "region": 49, "corporations": null, "unions": null}},
-{"model": "manager.region", "pk": 50, "fields": {"country": 1, "name": "Wyoming,"}},
+{"model": "manager.region", "pk": 50, "fields": {"country": 1, "name": "Wyoming"}},
 {"model": "manager.sector", "pk": 540, "fields": {"type": "Agriculture", "region": 50, "corporations": null, "unions": null}},
 {"model": "manager.sector", "pk": 541, "fields": {"type": "Automobiles", "region": 50, "corporations": null, "unions": null}},
 {"model": "manager.sector", "pk": 542, "fields": {"type": "Defense", "region": 50, "corporations": null, "unions": null}},
