@@ -68,6 +68,8 @@ paramilitary_types = (
 
 # Create your models here.
 
+#TODO enforce party/country
+
 class Assignment(models.Model):
     name = models.CharField(max_length=100)
     content = models.CharField(max_length=5000)
@@ -94,7 +96,7 @@ class Region(models.Model):
         return f"{self.country}: {self.name}"
 
 class Party(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=40)
     country = models.ForeignKey('Country', on_delete=models.CASCADE,related_name='country_parties')
     class Meta:
         verbose_name_plural = "Parties"
@@ -102,13 +104,13 @@ class Party(models.Model):
         return f"{self.name} party in {self.country}"
 
 class Corporation(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=40)
     specialization = models.CharField(max_length=50,choices=sector_types)
     def __str__(self):
         return f"{self.name}- {self.specialization} company"
 
 class Union(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=40)
     def __str__(self):
         return f"{self.name} Union"
 
@@ -124,7 +126,7 @@ class Sector(models.Model):
         """
 
 class Paramilitary(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=50)
     country = models.ForeignKey('Country', on_delete=models.CASCADE,related_name='paramilitaries')
     type = models.CharField(max_length=20,choices=paramilitary_types)
     class Meta:
@@ -133,9 +135,9 @@ class Paramilitary(models.Model):
         return f"""The {self.type} {self.name} force in {self.country}:"""
 
 class Account(models.Model):
-    username = models.CharField(max_length=255)
+    username = models.CharField(max_length=50)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='player_accounts')
-    character_name = models.CharField(max_length=255)
+    character_name = models.CharField(max_length=50)
     region = models.ForeignKey('Region', on_delete=models.CASCADE,related_name='region_players')
     corporation = models.ForeignKey('Corporation', on_delete=models.CASCADE,related_name='ceo',null=True,default=None,blank=True )
     paramilitary = models.ForeignKey('Paramilitary', on_delete=models.CASCADE,related_name='military_leader',null=True,default=None,blank=True )

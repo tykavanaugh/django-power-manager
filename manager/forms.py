@@ -15,10 +15,12 @@ class AccountForm(forms.ModelForm):
             'party',
         ]
 
+
+#Add more fields!
 class UnionForm(forms.ModelForm):
     class Meta:
         model = Union
-        fields = ['name']
+        fields = ['name','country']
 
 class ParamilitaryForm(forms.ModelForm):
     class Meta:
