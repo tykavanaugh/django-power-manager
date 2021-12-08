@@ -135,7 +135,6 @@ class Paramilitary(models.Model):
         return f"""The {self.type} {self.name} force in {self.country}:"""
 
 class Account(models.Model):
-    username = models.CharField(max_length=50)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='player_accounts')
     character_name = models.CharField(max_length=50)
     region = models.ForeignKey('Region', on_delete=models.CASCADE,related_name='region_players')

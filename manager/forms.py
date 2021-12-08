@@ -6,7 +6,6 @@ class AccountForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = [
-            'username',
             'character_name',
             'region',
             'corporation',
